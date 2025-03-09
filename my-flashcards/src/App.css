@@ -1,0 +1,106 @@
+/* Reset margins and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Main App container */
+.App {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Optional: Light overlay for readability */
+.App::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: -1; /* Place behind content */
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+/* Flashcard container for 3D perspective */
+.flashcard-container {
+  perspective: 1000px; /* Creates the 3D space for flipping */
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+/* The flipping card */
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+/* Flip the card when the .flipped class is added */
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Front and back faces of the card */
+.flashcard .front,
+.flashcard .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff; /* White background for readability */
+  backface-visibility: hidden; /* Hide the "back" side when flipped */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  color: black;
+}
+
+/* The back side of the card is rotated 180 degrees */
+.flashcard .back {
+  transform: rotateY(180deg);
+}
+
+/* Centering the button container */
+.button-container {
+  margin-top: 20px;
+}
+
+/* Button styling */
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #0070f3;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
