@@ -95,7 +95,7 @@ function App() {
           type="text"
           value={userInput}
           onChange={handleInputChange}
-          placeholder="Type your answer..."
+          placeholder="Guess the answer..."
         />
         <button onClick={handleSubmit}>Submit</button>
         <button className="shuffleButton" onClick={handleShuffle}>Shuffle</button>
