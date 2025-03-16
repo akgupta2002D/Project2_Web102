@@ -1,9 +1,9 @@
 import React from "react";
 
-function NextButton({ onNext }) {
+function NextButton({buttonName, onNext }) {
   return (
     <div className="button-container">
-      <button onClick={onNext}>Next Card</button>
+      <button onClick={onNext}>{buttonName}</button>
     </div>
   );
 }

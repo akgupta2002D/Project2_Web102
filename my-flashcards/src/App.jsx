@@ -34,26 +34,38 @@ const flashcards = [
 ];
 
 function App() {
+  // To pick the next card or display card using the index in the json objects.
   const [currentIndex, setCurrentIndex] = useState(0);
+  // This is to identify if the card is flipped.
   const [isFlipped, setIsFlipped] = useState(false);
 
+  const [userText, setUserText] = useState("");
+
   // Flip between front and back of the card
+
   const handleFlip = () => {
-    setIsFlipped((prev) => !prev);
+    setIsFlipped((prev) => !prev); // This takes the previous state and negates it, so True to False and False to True
   };
 
   // Pick a random new card different from the current one
   const handleNext = () => {
-    let nextIndex;
-    if (flashcards.length > 1) {
-      do {
-        nextIndex = Math.floor(Math.random() * flashcards.length);
-      } while (nextIndex === currentIndex);
+    if (currentIndex < flashcards.length - 1) {
+      setCurrentIndex(currentIndex + 1);
     } else {
-      nextIndex = currentIndex;
+      setCurrentIndex(0);
     }
-    setCurrentIndex(nextIndex);
     setIsFlipped(false);
+    
+  };
+
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(flashcards.length - 1);
+    }
+    setIsFlipped(false);
+    
   };
 
   return (
@@ -70,7 +82,8 @@ function App() {
         onFlip={handleFlip}
       />
 
-      <NextButton onNext={handleNext} />
+      <NextButton buttonName={"Next"} onNext={handleNext} />
+      <NextButton buttonName={"Back"} onNext={handleBack} />
     </div>
   );
 }
