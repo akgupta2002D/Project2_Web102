@@ -13,6 +13,18 @@ function App() {
   // we need states for feedback and userText
   const [userInput, setUserInput] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [activeFlashcards, setActiveFlashcards] = useState([...flashcards]);
+
+
+  const handleShuffle = () => {
+    const shuffledCards = [...activeFlashcards].sort(() => Math.random() - 0.5);
+    setActiveFlashcards(shuffledCards);
+    setCurrentIndex(0); // Start from the first card after shuffle
+    setIsFlipped(false);
+    setUserInput("");
+    setFeedback("");
+  };
+
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value); // Updates user input state
@@ -69,7 +81,7 @@ function App() {
       />
 
       <Flashcard
-        card={flashcards[currentIndex]}
+        card={activeFlashcards[currentIndex]}
         isFlipped={isFlipped}
         onFlip={handleFlip}
       />
@@ -86,6 +98,7 @@ function App() {
           placeholder="Type your answer..."
         />
         <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleShuffle}>Shuffle</button>
       </div>
 
       {feedback && <p className="feedback">{feedback}</p>}
