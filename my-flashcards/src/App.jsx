@@ -75,8 +75,8 @@ function App() {
   return (
     <div className="App">
       <Header
-        title="Agentic AI: Information & Future"
-        description="Explore the concepts behind agentic AI—its potential, its risks, and how it may shape our future."
+        title="Learn React"
+        description="Explore the concepts behind react framework, its capabilities, and how it helps us build better web applications."
         totalCards={flashcards.length}
       />
 
@@ -98,7 +98,7 @@ function App() {
           placeholder="Type your answer..."
         />
         <button onClick={handleSubmit}>Submit</button>
-        <button onClick={handleShuffle}>Shuffle</button>
+        <button className="shuffleButton" onClick={handleShuffle}>Shuffle</button>
       </div>
 
       {feedback && <p className="feedback">{feedback}</p>}

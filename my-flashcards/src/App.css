@@ -40,6 +40,8 @@ html, body {
   margin-bottom: 20px;
 }
 
+
+
 /* Flashcard container for 3D perspective */
 .flashcard-container {
   perspective: 1000px; /* Creates the 3D space for flipping */
@@ -131,7 +133,7 @@ button:hover {
   cursor: pointer;
   border: none;
   border-radius: 4px;
-  background-color: #0070f3;
+  
   color: white;
   transition: background-color 0.2s ease;
 }
@@ -145,4 +147,11 @@ button:hover {
   margin-top: 10px;
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.shuffleButton {
+  background-color: red;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
 }
