@@ -87,6 +87,11 @@ html, body {
 /* Centering the button container */
 .button-container {
   margin-top: 20px;
+  
+}
+.buttonContainerMain{
+  display: flex;
+  gap: 2rem;
 }
 
 /* Button styling */
@@ -103,4 +108,41 @@ button {
 
 button:hover {
   background-color: #005bb5;
+}
+
+/* Input container */
+.input-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.input-container input {
+  padding: 8px;
+  font-size: 1em;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.input-container button {
+  padding: 8px 12px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #0070f3;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.input-container button:hover {
+  background-color: #005bb5;
+}
+
+/* Feedback message */
+.feedback {
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
 }

@@ -3,43 +3,20 @@ import Header from "./components/Header";
 import Flashcard from "./components/Flashcard";
 import NextButton from "./components/NextButton";
 import "./App.css";
-
-// Array of flashcards with an Agentic AI theme
-const flashcards = [
-  {
-    question: "What is Agentic AI?",
-    answer:
-      "Agentic AI refers to artificial intelligence that operates autonomously with goal-directed behavior, making decisions with minimal human intervention."
-  },
-  {
-    question: "How might Agentic AI shape our future?",
-    answer:
-      "It could revolutionize industries by automating complex tasks and driving innovation, but it also raises important ethical and safety challenges."
-  },
-  {
-    question: "What ethical concerns arise from Agentic AI?",
-    answer:
-      "Key concerns include accountability, transparency, potential bias, and the risk of unintended consequences when AI operates independently."
-  },
-  {
-    question: "How can society prepare for an AI-driven future?",
-    answer:
-      "By establishing ethical guidelines, robust oversight, and regulatory frameworks, as well as investing in research to ensure AI remains safe and beneficial."
-  },
-  {
-    question: "What is the role of human oversight in Agentic AI systems?",
-    answer:
-      "Human oversight is crucial to ensure that autonomous decisions align with ethical standards and societal values, mitigating risks associated with full automation."
-  }
-];
+import flashcards from "./flashcards";
 
 function App() {
   // To pick the next card or display card using the index in the json objects.
   const [currentIndex, setCurrentIndex] = useState(0);
   // This is to identify if the card is flipped.
   const [isFlipped, setIsFlipped] = useState(false);
+  // we need states for feedback and userText
+  const [userInput, setUserInput] = useState("");
+  const [feedback, setFeedback] = useState("");
 
-  const [userText, setUserText] = useState("");
+  const handleInputChange = (event) => {
+    setUserInput(event.target.value); // Updates user input state
+  };
 
   // Flip between front and back of the card
 
@@ -55,6 +32,8 @@ function App() {
       setCurrentIndex(0);
     }
     setIsFlipped(false);
+    setUserInput("");  // Clear user input
+    setFeedback("");   
     
   };
 
@@ -65,7 +44,20 @@ function App() {
       setCurrentIndex(flashcards.length - 1);
     }
     setIsFlipped(false);
+    setUserInput("");  // Clear user input
+    setFeedback("");   
     
+  };
+
+  const handleSubmit = () => {
+    const correctAnswer = flashcards[currentIndex].answer.toLowerCase();
+    const userAnswer = userInput.trim().toLowerCase();
+  
+    if (userAnswer === correctAnswer) {
+      setFeedback("✅ Correct!");  // Display success message
+    } else {
+      setFeedback("❌ Incorrect. Try again!");  // Display failure message
+    }
   };
 
   return (
@@ -81,10 +73,24 @@ function App() {
         isFlipped={isFlipped}
         onFlip={handleFlip}
       />
+      <div className="buttonContainerMain">
+        <NextButton buttonName={"Back"} onClick={handleBack} />
+        <NextButton buttonName={"Next"} onClick={handleNext} />
+      </div>
 
-      <NextButton buttonName={"Next"} onNext={handleNext} />
-      <NextButton buttonName={"Back"} onNext={handleBack} />
+      <div className="input-container">
+        <input 
+          type="text"
+          value={userInput}
+          onChange={handleInputChange}
+          placeholder="Type your answer..."
+        />
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+
+      {feedback && <p className="feedback">{feedback}</p>}
     </div>
+    
   );
 }
 
